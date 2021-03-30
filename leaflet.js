@@ -9,7 +9,9 @@
 	  zoomOffset: -1
 	}).addTo(mymap);
 
-	L.terminator().addTo(mymap);
+	var terminator = L.terminator().addTo(mymap);
+
+//	L.terminator().addTo(mymap);
 
 	var satIcon = L.icon({
 	  iconUrl: 'sat.png',
@@ -28,11 +30,12 @@
 	};
 
 	setInterval(function(){
-		var lng = new Date().getSeconds()
+		terminator.setTime();
+		var lng = new Date().getSeconds();
 		fetch('https://api.wheretheiss.at/v1/satellites/25544')
 		  .then(res => res.json())
 		  .then(json => {
-		    console.log(json)
-		    updateMarker(json.latitude,json.longitude)
+		    console.log(json);
+		    updateMarker(json.latitude,json.longitude);
 		  })
 	},1000);
