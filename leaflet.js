@@ -1,6 +1,6 @@
 	var mymap = L.map('mapid').setView([0, 0], 0.5);
 
-	L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+	L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	  maxZoom: 18,
 	  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
 	    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -8,6 +8,8 @@
 	  tileSize: 512,
 	  zoomOffset: -1
 	}).addTo(mymap);
+
+	L.terminator().addTo(mymap);
 
 	var satIcon = L.icon({
 	  iconUrl: 'sat.png',
