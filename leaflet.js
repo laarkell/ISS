@@ -9,9 +9,9 @@
 	  zoomOffset: -1
 	}).addTo(mymap);
 
-//	var satIcon = L.icon({
-//	  iconUrl: 'assets/img/sat.png'
-//	});
-//	L.marker([51.5, -0.09], {
-//	  icon: satIcon
-//	}).addTo(map);
+	var satIcon = L.icon({
+	  iconUrl: 'sat.png'
+	});
+	L.marker([51.5, -0.09], {
+	  icon: satIcon
+	}).addTo(map);
