@@ -14,8 +14,8 @@
 //	L.terminator().addTo(mymap);
 
 	var satIcon = L.icon({
-	  iconUrl: 'sat.png',
-		iconSize: [40, 40],
+	  iconUrl: 'sat.svg',
+		iconSize: [75, 75],
 	});
 
 
