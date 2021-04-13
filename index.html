@@ -9,8 +9,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
 
-  <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
+  <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
   <script src="https://unpkg.com/@joergdietrich/leaflet.terminator"></script>
@@ -19,9 +22,29 @@
 </head>
 
 <body>
-
-  <div id="mapid" style="width: 600px; height: 400px;"></div>
-
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <h1 class="center title">Where is the ISS?</h1>
+        <p class="bottom">The ISS flies around the world every 90 minutes, traveling at about 5 miles per second. The ISS is the third brightest object in the night sky. Believe it or not, you don't even need a telescope to see it. Zoom in on the map to see if the
+          ISS is above you and go searching! </p>
+      </div>
+      <div class="col">
+        <div id="mapid" style="width: 600px; height: 400px;"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h3>What to look for?</h3>
+        <ol>
+          <li>First off, it has to be night time for you to see the ISS in the sky. It is only visible when it refelcts the light of the sun, similar to the moon.</li>
+          <li>It resembles a fast-moving plane or very bright star moving across the sky.</li>
+          <li>It will not be flashing and it does not change direction.</li>
+          <li>Keep searching! The ISS could pass over you several times a week or as little as once a month.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
   <script src="main.js"></script>
   <script src="leaflet.js"></script>
 </body>
