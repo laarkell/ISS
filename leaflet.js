@@ -1,15 +1,15 @@
-	var mymap = L.map('mapid').setView([0, 0], 0.5);
+var mymap = L.map('mapid').setView([0, 0], 1);
 
-	L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	  maxZoom: 18,
-	  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-	    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-	  id: 'mapbox/streets-v11',
-	  tileSize: 512,
-	  zoomOffset: -1
-	}).addTo(mymap);
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'laarkell/cknpgf4w40l0o17oywwdkzl8s',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoibGFhcmtlbGwiLCJhIjoiY2tucGdlemhsMDAzYTJvcGgwNnM0YzB0cSJ9.8nTcDS-ezFkxkKDkmn5NhA'
+}).addTo(mymap);
 
-	var terminator = L.terminator().addTo(mymap);
+var terminator = L.terminator().addTo(mymap);
 
 //	L.terminator().addTo(mymap);
 
