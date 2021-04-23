@@ -7,14 +7,10 @@
   text-align: center;
 }
 .title{
-  margin-top: 30%;
   font-family: "Orbitron";
 }
 
 .container-fluid {
   color: white;
   background-color: black;
-}
-.bottom{
-  margin-top: 5%;
 }
