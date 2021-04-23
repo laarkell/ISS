@@ -40,7 +40,7 @@ function updateMarker(lat, lng) {
 
   var newLatLng = new L.LatLng(lat, lng);
   marker.setLatLng(newLatLng);
-};
+}
 
 setInterval(function() {
   terminator.setTime();
@@ -50,5 +50,5 @@ setInterval(function() {
     .then(json => {
       console.log(json);
       updateMarker(json.latitude, json.longitude);
-    })
+    });
 }, 1000);
