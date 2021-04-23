@@ -8,6 +8,10 @@ fetch('https://api.wheretheiss.at/v1/satellites/25544')
     updateMarker(json.latitude,json.longitude)
   });
 
+  $( document ).ready(function() {
+      $(".howto").load("howto.html")
+  });
+
 function changetab1(){
   $(".facts").load("facts.html")
 }
