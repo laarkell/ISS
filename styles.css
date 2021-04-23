@@ -2,8 +2,12 @@ html{
   background-color: black;
 }
 p{
-  font-size: 22px
+  font-size: 25px
 }
+li{
+  font-size: 25px
+}
+
 #mapid {
   min-width: 100%;
   min-height: 1000px;
