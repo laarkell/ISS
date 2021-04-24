@@ -32,7 +32,8 @@ li{
   padding: 16px;
   transition-duration: 0.4s;
   cursor: pointer;
-  text-align: center;
+  width: 30%;
+  min-width: 140px;
 }
 .button:hover {
   background-color: #bcccdc;
