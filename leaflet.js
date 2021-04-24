@@ -49,7 +49,7 @@ function createMap(lat, lng) {
 	// create icon, storing ref in global var
 	satIcon = L.icon({
 		iconUrl: 'sat.svg',
-		iconSize: [90, 90],
+		iconSize: [100, 100],
 	});
 
 	// create marker, storing ref in global var
