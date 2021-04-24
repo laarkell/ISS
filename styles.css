@@ -35,6 +35,7 @@ li{
   width: 30%;
   min-width: 140px;
 }
+
 .button:hover {
   background-color: #bcccdc;
   color: white;
