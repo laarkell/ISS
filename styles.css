@@ -2,10 +2,10 @@ html{
   background-color: black;
 }
 p{
-  font-size: 25px
+  font-size: 20px
 }
 li{
-  font-size: 25px
+  font-size: 20px
 }
 
 #mapid {
@@ -34,7 +34,7 @@ button{
   cursor: pointer;
   text-align: center;
 }
-.button1:hover {
+.button:hover {
   background-color: #008CBA;
   color: white;
 }
