@@ -22,24 +22,21 @@ getData();
 
 
 // 2. create map
+// create Leaflet map, store reference in global var
+mymap2 = L.map('map2').setView([41.702, -76.014], 3);
 
-function createMap(lat, lng) {
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+	maxZoom: 18,
+	id: 'laarkell/cknpgf4w40l0o17oywwdkzl8s',
+	tileSize: 512,
+	zoomOffset: -1,
+	accessToken: 'pk.eyJ1IjoibGFhcmtlbGwiLCJhIjoiY2tucGdlemhsMDAzYTJvcGgwNnM0YzB0cSJ9.8nTcDS-ezFkxkKDkmn5NhA'
+}).addTo(mymap2);
 
-  // create Leaflet map, store reference in global var
-  mymap2 = L.map('map2').setView([41.702, -76.014], 3);
+terminator = L.terminator().addTo(mymap2);
 
-  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'laarkell/cknpgf4w40l0o17oywwdkzl8s',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoibGFhcmtlbGwiLCJhIjoiY2tucGdlemhsMDAzYTJvcGgwNnM0YzB0cSJ9.8nTcDS-ezFkxkKDkmn5NhA'
-  }).addTo(mymap2);
-
-  terminator = L.terminator().addTo(mymap2);
-
-  //	L.terminator().addTo(mymap);
+function updateMap(lat, lng) {
 
   // create icon, storing ref in global var
   satIcon = L.icon({
@@ -60,7 +57,7 @@ function createMap(lat, lng) {
   }, 1000);
 }
 
-createMap();
+updateMap();
 // called every time new data received
 
 function updateMarker(lat, lng) {
