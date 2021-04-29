@@ -10,11 +10,17 @@ function getData() {
   fetch('https://api.n2yo.com/rest/v1/satellite/above/41.702/-76.014/0/90/ANY/&apiKey=XFR4Y5-ULWYWF-H64T3J-4OKO')
     .then(res => res.json())
     .then(json => {
-      // after data has been received
-      console.log(json);
-      for (i = 0; i < json.satcount; i++) {
-        updateMarker(json.satlat, json.satlng);
-      }
+        // after data has been received
+        console.log(json);
+        if (!mymap2) {
+          createMap();
+        }
+        // if map already created then update marker position
+        else {
+          for (i = 0; i < json.satcount; i++) {
+            updateMarker(json.satlat, json.satlng);
+          }
+        }
     });
 }
 // gets data when the page loads
@@ -22,6 +28,7 @@ getData();
 
 
 // 2. create map
+function createMap() {
 // create Leaflet map, store reference in global var
 mymap2 = L.map('map2').setView([41.702, -76.014], 3);
 
@@ -35,8 +42,6 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(mymap2);
 
 terminator = L.terminator().addTo(mymap2);
-
-function updateMap(lat, lng) {
 
   // create icon, storing ref in global var
   satIcon = L.icon({
@@ -57,7 +62,6 @@ function updateMap(lat, lng) {
   }, 1000);
 }
 
-updateMap();
 // called every time new data received
 
 function updateMarker(lat, lng) {
