@@ -1,7 +1,7 @@
 "use strict";
 
 // 0. create global vars
-var mymap, terminator,
+var mymap2, terminator,
   satIcon, marker, timer, i;
 
 // 1. fetch iss data
@@ -26,7 +26,7 @@ getData();
 function createMap(lat, lng) {
 
   // create Leaflet map, store reference in global var
-  mymap = L.map('map2').setView([41.702, -76.014], 3);
+  mymap2 = L.map('map2').setView([41.702, -76.014], 3);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -35,9 +35,9 @@ function createMap(lat, lng) {
     tileSize: 512,
     zoomOffset: -1,
     accessToken: 'pk.eyJ1IjoibGFhcmtlbGwiLCJhIjoiY2tucGdlemhsMDAzYTJvcGgwNnM0YzB0cSJ9.8nTcDS-ezFkxkKDkmn5NhA'
-  }).addTo(mymap);
+  }).addTo(mymap2);
 
-  terminator = L.terminator().addTo(mymap);
+  terminator = L.terminator().addTo(mymap2);
 
   //	L.terminator().addTo(mymap);
 
@@ -50,7 +50,7 @@ function createMap(lat, lng) {
   // create marker, storing ref in global var
   marker = L.marker([lat, lng], {
     icon: satIcon
-  }).addTo(mymap);
+  }).addTo(mymap2);
 
   // start timer, storing ref in global var
   timer = setInterval(function() {
