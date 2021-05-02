@@ -7,21 +7,29 @@ var mymap2, terminator,
 // 1. fetch iss data
 
 function getData() {
-  fetch('https://api.n2yo.com/rest/v1/satellite/above/41.702/-76.014/0/90/ANY/&apiKey=XFR4Y5-ULWYWF-H64T3J-4OKO')
-    .then(res => res.json())
-    .then(json => {
-      // after data has been received
-      console.log(json);
-      if (!mymap2) {
-        createMap();
+  fetch('https://api.n2yo.com/rest/v1/satellite/above/41.702/-76.014/0/90/ANY/&apiKey=XFR4Y5-ULWYWF-H64T3J-4OKO', {
+    method: 'GET',
+    mode: "cors",
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then((res) => {
+    var resJson = JSON.parse(res);
+    console.log(resJson);
+    return resJson;
+  }).then((resJson) => {
+    if (!mymap2) {
+      createMap();
+    }
+    // if map already created then update marker position
+    else {
+      for (i = 0; i < resJson.satcount; i++) {
+        updateMarker(resJson.satlat, resJson.satlng);
       }
-      // if map already created then update marker position
-      else {
-        for (i = 0; i < json.satcount; i++) {
-          updateMarker(json.satlat, json.satlng);
-        }
-      }
-    });
+    }
+  }).catch((err) => {
+    console.log("error");
+  });
 }
 // gets data when the page loads
 getData();
