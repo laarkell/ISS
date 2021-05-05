@@ -42,7 +42,7 @@ function getData() {
 				     // if map already created then update marker position
 				     else {
 				       for (i = 0; i < data.satcount; i++) {
-				         updateMarker(data.satlat, data.satlng);
+				         updateMarker(data.satlat, data.satlng, i);
 				       }
 				     }
 			});
@@ -55,7 +55,7 @@ getData();
 // 2. create map
 function createMap() {
   // create Leaflet map, store reference in global var
-  mymap2 = L.map('map2').setView([41.702, -76.014], 3);
+  mymap2 = L.map('mapid').setView([41.702, -76.014], 3);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -90,6 +90,6 @@ function createMap() {
 // called every time new data received
 
 function updateMarker(lat, lng) {
-  var newLatLng = new L.LatLng(lat, lng);
-  marker.setLatLng(newLatLng);
+	var newLatLng = new L.LatLng(lat, lng);
+	marker.setLatLng(newLatLng);
 }
