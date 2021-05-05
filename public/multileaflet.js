@@ -75,7 +75,7 @@ function createMap() {
   });
 
   // create marker, storing ref in global var
-  marker = L.marker([lat, lng], {
+  marker = L.marker([41.702, -76.014], {
     icon: satIcon
   }).addTo(mymap2);
 
