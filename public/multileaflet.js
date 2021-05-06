@@ -2,62 +2,73 @@
 
 // 0. create global vars
 var mymap2, terminator,
-  satIcon, timer, i;
+  satIcon, marker, timer, i, row, markerObj = {},
+  dataObj = {};
 
-var sats = [];
+
 
 // 1. fetch iss data
 
-// function getData() {
-//   fetch('https://api.n2yo.com/rest/v1/satellite/above/41.702/-76.014/0/90/ANY/&apiKey=XFR4Y5-ULWYWF-H64T3J-4OKO', {
-//     method: 'GET',
-//     mode: "cors",
-//     headers: {
-//       'Content-Type': 'application/json'
-//     }
-//   }).then((res) => {
-//     var resJson = JSON.parse(res);
-//     console.log(resJson);
-//     return resJson;
-//   }).then((resJson) => {
-//     if (!mymap2) {
-//       createMap();
-//     }
-//     // if map already created then update marker position
-//     else {
-//       for (i = 0; i < resJson.satcount; i++) {
-//         updateMarker(resJson.satlat, resJson.satlng);
-//       }
-//     }
-//   }).catch((err) => {
-//     console.log("error");
-//   });
-// }
-
 function getData() {
-	   fetch('multisat.json')
-			.then(response => response.json())
-			.then(data => {
-				if (!mymap2) {
-				       createMap();
-				     }
-				     // if map already created then update marker position
-				     else {
-				       for (i = 0; i < data.satcount; i++) {
-				         updateMarker(data.satlat, data.satlng, i);
-				       }
-				     }
-			});
-		}
-// gets data when the page loads
+  fetch('http://localhost:3000/hello', {
+    method: 'GET',
+    mode: "cors",
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then((res) => {
 
-getData();
+    var resJson = JSON.parse(res);
+    console.log(resJson);
+    return resJson;
 
+  }).then((resJson) => {
+
+    dataObj = {};
+    for (var i = 0; i < resJson.info.satcount; i++) {
+      if (i > 100) {
+        break;
+      }
+      dataObj[resJson.above[i].intDesignator] = resJson.above[i];
+    }
+
+    if (!mymap2) {
+      createMap();
+    } else {
+      updateMarkers();
+    }
+  }).catch((err) => {
+    console.log("error");
+  });
+}
+
+// function getData() {
+//   fetch('multisat.json')
+//     .then(response => response.json())
+//     .then(data => {
+//       dataObj = {};
+//       for (var i = 0; i < data.info.satcount; i++) {
+// 				if (i > 100){
+// 					break;
+// 				}
+//         dataObj[data.above[i].intDesignator] = data.above[i];
+//       }
+//
+//       if (!mymap2) {
+//         createMap();
+//       } else {
+//         updateMarkers();
+//       }
+//     });
+// }
+// // gets data when the page loads
+//
+ getData();
 
 // 2. create map
 function createMap() {
   // create Leaflet map, store reference in global var
-  mymap2 = L.map('mapid').setView([41.702, -76.014], 3);
+  mymap2 = L.map('mapid').setView([41.702, -76.014], 4);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -76,22 +87,45 @@ function createMap() {
     iconSize: [100, 100],
   });
 
-  // create marker, storing ref in global var
-  marker = L.marker([41.702, -76.014], {
-    icon: satIcon
-  }).addTo(mymap2);
+  //    for (var i = 0; i < row.length; i++) {
+  //     	marker = L.marker([row.satlat(i), row.satlng(i)], {
+  //     		icon: satIcon
+  //         }).addTo(mymap2);
+  // }
 
-  // start timer, storing ref in global var
+  for (var key in dataObj) {
+    // console.log(dataObj[key]);
+    markerObj[key] = L.marker([dataObj[key].satlat, dataObj[key].satlng], {
+      icon: satIcon
+    }).addTo(mymap2);
+  }
+
+
+  //   // create marker, storing ref in global var
+  //   marker = L.marker([41.702, -76.014], {
+  //     icon: satIcon
+  //   }).addTo(mymap2);
+
+
+}
+//   // start timer, storing ref in global var
   timer = setInterval(function() {
     terminator.setTime();
-    // var lng = new Date().getSeconds();
+     var lng = new Date().getSeconds();
     getData();
-  }, 1000);
-}
+		 console.log("Timer Called");
+   }, 5000);
 
 // called every time new data received
 
-function updateMarker(lat, lng) {
-	var newLatLng = new L.LatLng(lat, lng);
-	marker.setLatLng(newLatLng);
+function updateMarkers() {
+  for (var key in markerObj) {
+    if (dataObj[key]) {
+      // var newLatLng = new L.LatLng(dataObj[key].satlat, dataObj[key].satlng);
+			var newLatLng = new L.LatLng(dataObj[key].satlat, dataObj[key].satlng);
+      markerObj[key].setLatLng(newLatLng);
+    } else {
+      delete markerObj[key];
+    }
+  }
 }
