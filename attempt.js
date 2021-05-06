@@ -2,9 +2,7 @@
 
 // 0. create global vars
 var mymap2, terminator,
-  satIcon, timer, i;
-
-var sats = [];
+  satIcon, marker, timer, i, row;
 
 // 1. fetch iss data
 
@@ -39,19 +37,23 @@ function getData() {
 			.then(response => response.json())
 			.then(data => {
 				if (!mymap2) {
-				       createMap();
-				     }
-				     // if map already created then update marker position
-				     else {
-				       for (i = 0; i < data.satcount; i++) {
-				         updateMarker(data.satlat, data.satlng, i);
-				       }
-				     }
+
+				     for (var i = 0; i < data.satcount; i++) {
+				        row = data.getJSONObject(i);
+				     	satlat = row.getInt("satlat");
+				     	satlng = row.getInt("satlng");
+				     	arr.push({ lat: satlat, lng:satlng });
+}}
+                else {
+            createMap();
+                }
+
 			});
 		}
 // gets data when the page loads
 
 getData();
+
 
 
 // 2. create map
@@ -76,20 +78,29 @@ function createMap() {
     iconSize: [100, 100],
   });
 
-  // create marker, storing ref in global var
-  marker = L.marker([41.702, -76.014], {
-    icon: satIcon
-  }).addTo(mymap2);
-
-  // start timer, storing ref in global var
-  timer = setInterval(function() {
-    terminator.setTime();
-    // var lng = new Date().getSeconds();
-    getData();
-  }, 1000);
+   for (var i = 0; i < row.length; i++) {
+    	marker = L.marker([row.satlat(i), row.satlng(i)], {
+    		icon: satIcon
+        }).addTo(mymap2);
 }
 
-// called every time new data received
+
+//   // create marker, storing ref in global var
+//   marker = L.marker([41.702, -76.014], {
+//     icon: satIcon
+//   }).addTo(mymap2);
+
+
+}
+//   // start timer, storing ref in global var
+//   timer = setInterval(function() {
+//     terminator.setTime();
+//     // var lng = new Date().getSeconds();
+//     getData();
+//   }, 1000);
+// }
+
+// // called every time new data received
 
 function updateMarker(lat, lng) {
 	var newLatLng = new L.LatLng(lat, lng);
