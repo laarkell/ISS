@@ -110,8 +110,8 @@ function createMap() {
 }
 //   // start timer, storing ref in global var
   timer = setInterval(function() {
-    terminator.setTime();
-     var lng = new Date().getSeconds();
+    // terminator.setTime();
+   // var lng = new Date().getSeconds();
     getData();
 		 console.log("Timer Called");
    }, 5000);
