@@ -59,7 +59,7 @@ function createMap(lat, lng) {
 
 	// start timer, storing ref in global var
 	timer = setInterval(function() {
-		// terminator.setTime();
+		terminator.setTime();
 		// var lng = new Date().getSeconds();
 		getData();
 	}, 1000);
