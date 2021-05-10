@@ -5,12 +5,14 @@ var mymap2, terminator,
   satIcon, marker, timer, i, row, markerObj = {},
   dataObj = {};
 
-
-
+var url = 'http://localhost:3000/hello';
+if (!window.location.href.includes('localhost')){
+  url = 'https://issapp878.herokuapp.com/hello';
+}
 // 1. fetch iss data
 
 function getData() {
-  fetch('http://localhost:3000/hello').then((res) => {
+  fetch(url).then((res) => {
 
     // var resJson = JSON.parse(res);
     var resJson = res.json();

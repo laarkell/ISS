@@ -12,7 +12,7 @@ app.get('/hello', (req, res) => {
 ).then(res => res.text())
   .then(text => {
     var json = JSON.parse(text);
-    console.log(json);
+    // console.log(json);
     res.json(json);
   });
 // .then((data) => {
