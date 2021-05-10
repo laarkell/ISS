@@ -6,7 +6,9 @@ const app = express();
 const port = 3000;
 
 app.use(express.static('public'));
-
+app.get('/', (req, res) => {
+  res.text('hello');
+});
 app.get('/hello', (req, res) => {
   Fetch('https://api.n2yo.com/rest/v1/satellite/above/41.702/-76.014/0/90/ANY/&apiKey=XFR4Y5-ULWYWF-H64T3J-4OKO'
 ).then(res => res.text())
