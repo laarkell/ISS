@@ -10,15 +10,10 @@ var mymap2, terminator,
 // 1. fetch iss data
 
 function getData() {
-  fetch('http://localhost:3000/hello', {
-    method: 'GET',
-    mode: "cors",
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).then((res) => {
+  fetch('http://localhost:3000/hello').then((res) => {
 
-    var resJson = JSON.parse(res);
+    // var resJson = JSON.parse(res);
+    var resJson = res.json();
     console.log(resJson);
     return resJson;
 
@@ -63,10 +58,11 @@ function getData() {
 // }
 // // gets data when the page loads
 //
- getData();
+getData();
 
 // 2. create map
 function createMap() {
+  console.log("Create Map");
   // create Leaflet map, store reference in global var
   mymap2 = L.map('mapid').setView([41.702, -76.014], 4);
 
@@ -108,21 +104,24 @@ function createMap() {
 
 
 }
+// End create Map
+
 //   // start timer, storing ref in global var
-  timer = setInterval(function() {
-    // terminator.setTime();
-   // var lng = new Date().getSeconds();
-    getData();
-		 console.log("Timer Called");
-   }, 5000);
+timer = setInterval(function() {
+  // terminator.setTime();
+  // var lng = new Date().getSeconds();
+  getData();
+  console.log("Timer Called");
+}, 5000);
 
 // called every time new data received
 
 function updateMarkers() {
+  console.log("Update Markers");
   for (var key in markerObj) {
     if (dataObj[key]) {
       // var newLatLng = new L.LatLng(dataObj[key].satlat, dataObj[key].satlng);
-			var newLatLng = new L.LatLng(dataObj[key].satlat, dataObj[key].satlng);
+      var newLatLng = new L.LatLng(dataObj[key].satlat, dataObj[key].satlng);
       markerObj[key].setLatLng(newLatLng);
     } else {
       delete markerObj[key];
