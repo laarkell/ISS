@@ -34,3 +34,6 @@ app.get('/hello', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+
+// export app 
+module.exports = app;

@@ -11,7 +11,7 @@ function getData() {
 		.then(res => res.json())
 		.then(json => {
 			// after data has been received
-			console.log(json);
+			// console.log(json);
 			// on the first run create the map
 			if (!mymap) {
 				createMap(json.latitude, json.longitude);
