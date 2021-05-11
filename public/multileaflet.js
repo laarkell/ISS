@@ -13,7 +13,9 @@ var mymap2, terminator,
 
 function getData() {
   fetch('/proxy/satellites')
-  .then(d => d.text())
+  .then(d => d.json()
+    // d.text();
+  )
 	.then(d => {
     dataObj = {};
     for (var i = 0; i < d.info.satcount; i++) {
