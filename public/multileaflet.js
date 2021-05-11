@@ -5,28 +5,22 @@ var mymap2, terminator,
   satIcon, marker, timer, i, row, markerObj = {},
   dataObj = {};
 
-var url = 'http://localhost:3000/hello';
-if (!window.location.href.includes('localhost')){
-  url = 'https://issapp878.herokuapp.com/hello';
-}
+// var url = 'http://localhost:3000/hello';
+// if (!window.location.href.includes('localhost')){
+//   url = 'https://issapp878.herokuapp.com/hello';
+// }
 // 1. fetch iss data
 
 function getData() {
-  fetch(url).then((res) => {
-
-    // var resJson = JSON.parse(res);
-    var resJson = res.json();
-    console.log(resJson);
-    return resJson;
-
-  }).then((resJson) => {
-
+  fetch('/proxy/satellites')
+  .then(d => d.text())
+	.then(d => {
     dataObj = {};
-    for (var i = 0; i < resJson.info.satcount; i++) {
+    for (var i = 0; i < d.info.satcount; i++) {
       if (i > 100) {
         break;
       }
-      dataObj[resJson.above[i].intDesignator] = resJson.above[i];
+      dataObj[d.above[i].intDesignator] = d.above[i];
     }
 
     if (!mymap2) {
@@ -34,9 +28,36 @@ function getData() {
     } else {
       updateMarkers();
     }
-  }).catch((err) => {
-    console.log("error");
-  });
+  })
+	.catch(err => console.error("fetch #2", err));
+
+  // .then((res) => {
+  //
+  //   // var resJson = JSON.parse(res);
+  //   var resJson = res.json();
+  //   console.log(resJson);
+  //   return resJson;
+  //
+  // })
+  //
+  // .then((resJson) => {
+  //
+  //   dataObj = {};
+  //   for (var i = 0; i < resJson.info.satcount; i++) {
+  //     if (i > 100) {
+  //       break;
+  //     }
+  //     dataObj[resJson.above[i].intDesignator] = resJson.above[i];
+  //   }
+  //
+  //   if (!mymap2) {
+  //     createMap();
+  //   } else {
+  //     updateMarkers();
+  //   }
+  // }).catch((err) => {
+  //   console.log("error");
+  // });
 }
 
 // function getData() {
