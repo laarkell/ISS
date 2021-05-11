@@ -137,7 +137,7 @@ timer = setInterval(function() {
   // var lng = new Date().getSeconds();
   getData();
   console.log("Timer Called");
-}, 5000);
+}, 1000);
 
 // called every time new data received
 
