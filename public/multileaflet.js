@@ -29,7 +29,7 @@ function getData() {
       updateMarkers();
     }
   })
-	.catch(err => console.error("fetch #2", err));
+	.catch(err => console.error("Get Data Error", err));
 
   // .then((res) => {
   //

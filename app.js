@@ -31,7 +31,7 @@ const endpoints = {
 
 // add route to create a proxy server
 app.get('/proxy/:key?', (req, res) => {
-	console.log("req.params.key =", req.params.key);
+	// console.log("req.params.key =", req.params.key);
 	if (!req.params || req.params == {} || !req.params.key || !endpoints[req.params.key]) return res.send("🙃");
 
 	nodeFetch(endpoints[req.params.key].url)
