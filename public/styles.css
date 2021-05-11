@@ -35,8 +35,29 @@ li{
   width: 30%;
   min-width: 140px;
 }
+.button2{
+  font-weight: bold;
+  font-size: 16px;
+  padding: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width: 40%;
+  min-width: 140px;
+}
+
+.button2:hover {
+  background-color: #bcccdc;
+  color: white;
+}
 
 .button:hover {
   background-color: #bcccdc;
   color: white;
+}
+
+.link{
+  font-size: 25px;
+  text-align: center;
+  font-style: italic;
+  color: yellow;
 }

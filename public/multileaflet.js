@@ -19,9 +19,9 @@ function getData() {
 	.then(d => {
     dataObj = {};
     for (var i = 0; i < d.info.satcount; i++) {
-      if (i > 100) {
-        break;
-      }
+      // if (i > 100) {
+      //   break;
+      // }
       dataObj[d.above[i].intDesignator] = d.above[i];
     }
 
