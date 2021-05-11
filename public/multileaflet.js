@@ -136,13 +136,13 @@ timer = setInterval(function() {
   // terminator.setTime();
   // var lng = new Date().getSeconds();
   getData();
-  console.log("Timer Called");
+  // console.log("Timer Called");
 }, 1000);
 
 // called every time new data received
 
 function updateMarkers() {
-  console.log("Update Markers");
+  // console.log("Update Markers");
   for (var key in markerObj) {
     if (dataObj[key]) {
       // var newLatLng = new L.LatLng(dataObj[key].satlat, dataObj[key].satlng);
